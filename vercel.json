@@ -5,8 +5,8 @@
       "destination": "https://nuxt-cross-calculator.vercel.app/nuxt"
     },
     {
-      "source": "/_nuxt",
-      "destination": "https://nuxt-cross-calculator.vercel.app/_nuxt"
+      "source": "/_nuxt/:path*",
+      "destination": "https://nuxt-cross-calculator.vercel.app/_nuxt/:path*"
     }
   ]
 }
