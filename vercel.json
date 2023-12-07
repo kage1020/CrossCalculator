@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/nuxt",
+      "destination": "https://nuxt-cross-calculator.vercel.app"
+    }
+  ]
+}

@@ -47,7 +47,7 @@ export default function Home() {
       return
     } else if (formula.length !== 0 && label.label === '=') {
       const result = eval(formula.map((f) => f.label).join(''))
-      setFormula([{ label: result.toString(), icon: null, row: 1, col: 1 }])
+      setFormula([{ label: result, icon: null, row: 1, col: 1 }])
       return
     }
     if (formula.length === 0 && typeof label.label !== 'number') return
