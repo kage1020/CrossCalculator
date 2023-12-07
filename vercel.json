@@ -2,7 +2,11 @@
   "rewrites": [
     {
       "source": "/nuxt",
-      "destination": "https://nuxt-cross-calculator.vercel.app"
+      "destination": "https://nuxt-cross-calculator.vercel.app/nuxt"
+    },
+    {
+      "source": "/_nuxt",
+      "destination": "https://nuxt-cross-calculator.vercel.app/_nuxt"
     }
   ]
 }
