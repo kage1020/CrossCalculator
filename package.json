@@ -1,5 +1,5 @@
 {
-  "name": "CrossCalculator",
+  "name": "cross-calculator",
   "private": true,
   "scripts": {
     "build": "turbo build",
