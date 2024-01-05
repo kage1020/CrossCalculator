@@ -7,6 +7,7 @@ import {
 import {
   AstroIcon,
   GatsbyIcon,
+  NextIcon,
   NuxtIcon,
   ReactIcon,
   RemixIcon,
@@ -22,6 +23,7 @@ type Framework = FrameworkWithoutIcon & { icon: IconType };
 const icons = [
   AstroIcon,
   GatsbyIcon,
+  NextIcon,
   NuxtIcon,
   QwikIcon,
   ReactIcon,
@@ -35,9 +37,7 @@ export function cn(...classes: ClassValue[]) {
   return twMerge(clsx(classes));
 }
 
-export const frameworks: Framework[] = frameworksWithoutIcon
-  .filter((f) => f.value !== 'next')
-  .map((framework, index) => ({
-    ...framework,
-    icon: icons[index],
-  }));
+export const frameworks: Framework[] = frameworksWithoutIcon.map((framework, index) => ({
+  ...framework,
+  icon: icons[index],
+}));
