@@ -1,22 +1,15 @@
 'client';
 
-export function Qwik({
-  className = '',
-  size = '1rem',
-  color = 'currentColor',
-}: {
-  className?: string;
-  size?: number | string;
-  color?: string;
-}) {
+import { IconBaseProps } from 'react-icons';
+
+export function QwikIcon({ size, ...props }: IconBaseProps) {
   return (
     <svg
-      className={className}
       xmlns='http://www.w3.org/2000/svg'
-      color={color}
       width={size}
       height={size}
       viewBox='0 0 128 128'
+      {...props}
     >
       <path
         fill='currentColor'

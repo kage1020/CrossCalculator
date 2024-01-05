@@ -1,9 +1,11 @@
 'use client';
 
+import { LuDivide, LuPlus, LuMinus, LuX, LuEqual } from 'react-icons/lu';
 import { MdSunny, MdBedtime } from 'react-icons/md';
 import {
   SiAstro,
   SiGatsby,
+  SiGithub,
   SiNextdotjs,
   SiNuxtdotjs,
   SiReact,
@@ -11,18 +13,27 @@ import {
   SiSolid,
   SiSvelte,
   SiVuedotjs,
+  SiX,
 } from 'react-icons/si';
+export type { IconType } from 'react-icons';
 
 export {
-  MdSunny as Sun,
-  MdBedtime as Moon,
-  SiAstro as Astro,
-  SiGatsby as Gatsby,
-  SiNextdotjs as Next,
-  SiNuxtdotjs as Nuxt,
-  SiReact as React,
-  SiRemix as Remix,
-  SiSolid as Solid,
-  SiSvelte as Svelte,
-  SiVuedotjs as Vue,
+  MdSunny as SunIcon,
+  MdBedtime as MoonIcon,
+  SiAstro as AstroIcon,
+  SiGithub as GithubIcon,
+  SiGatsby as GatsbyIcon,
+  SiNextdotjs as NextIcon,
+  SiNuxtdotjs as NuxtIcon,
+  SiReact as ReactIcon,
+  SiRemix as RemixIcon,
+  SiSolid as SolidIcon,
+  SiSvelte as SvelteIcon,
+  SiVuedotjs as VueIcon,
+  SiX as XIcon,
+  LuDivide as DivideIcon,
+  LuPlus as PlusIcon,
+  LuMinus as MinusIcon,
+  LuX as TimesIcon,
+  LuEqual as EqualIcon,
 };

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "clsx": "^2.1.0",
     "next": "14.0.4",
     "next-themes": "^0.2.1",
@@ -18,7 +19,6 @@
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-    "@repo/constants": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
