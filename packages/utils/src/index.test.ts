@@ -1,4 +1,5 @@
 import { createUrl, parseUrl, isNumber, isOperator, toKey, KEYS, KEY } from './index';
+import { expect, describe, test } from 'vitest';
 
 describe('Utils', () => {
   test('toKey', () => {
