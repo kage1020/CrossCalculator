@@ -281,7 +281,7 @@ export default function Home() {
             {KEYS.map((k) => (
               <NextUIButton
                 className={cn(
-                  'text-2xl h-full sm:w-16 md:w-[4.5rem] lg:w-20 xl:w-20 min-h-12 rounded min-w-0',
+                  'text-2xl h-full sm:w-16 md:w-[4.5rem] lg:w-20 xl:w-20 min-h-12 rounded min-w-0 !bg-neutral-700',
                   k.row === 2 && 'row-span-2',
                   k.col === 2 &&
                     'col-span-2 sm:w-[8.5rem] md:w-[9.5rem] lg:w-[10.5rem] xl:w-[10.5rem]'
