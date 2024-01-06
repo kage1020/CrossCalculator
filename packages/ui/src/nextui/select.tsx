@@ -1,5 +1,3 @@
-'use client';
-
 import { Select, SelectItem } from '@nextui-org/react';
 import { NextUISelectProps } from './types';
 import '../../dist/index.css';

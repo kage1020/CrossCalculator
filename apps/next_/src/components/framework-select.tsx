@@ -5,9 +5,11 @@ import Button from '@repo/ui/NextUIButton';
 import { frameworks } from '@/libs';
 import Icon from './icon';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 export default function FrameworkSelect() {
   const { theme } = useTheme();
+  const searchParams = useSearchParams();
 
   return (
     <div className='flex gap-2 flex-wrap justify-center'>
@@ -16,7 +18,7 @@ export default function FrameworkSelect() {
         .map((f) => (
           <Button
             as={Link}
-            href={f.href}
+            href={`${f.href}?${searchParams.toString()}`}
             variant='bordered'
             key={f.value}
             className='w-28 grid grid-cols-3 !bg-stone-100 dark:!bg-stone-700 hover:!bg-stone-200 dark:hover:!bg-stone-600'

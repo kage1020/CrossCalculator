@@ -5,14 +5,13 @@ import NextUIButton from '@repo/ui/NextUIButton';
 import { Card, CardBody, CardHeader } from '@repo/ui/NextUICard';
 import { DivideIcon, EqualIcon, MinusIcon, PlusIcon, TimesIcon } from '@repo/ui/ReactIcons';
 import { KEY, KEYS, Key, isNumber, isOperator, toKey, createUrl, parseUrl } from '@repo/utils';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 
 export default function CalculatorCard() {
   const [formula, setFormula] = useState<Key[]>([]);
   const [history, setHistory] = useState<Key[][]>([]);
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {

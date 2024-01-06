@@ -1,5 +1,3 @@
-'use client';
-
 import { LuDivide, LuPlus, LuMinus, LuX, LuEqual } from 'react-icons/lu';
 import { MdSunny, MdBedtime } from 'react-icons/md';
 import {

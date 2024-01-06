@@ -1,5 +1,3 @@
-'client';
-
 import { IconBaseProps } from 'react-icons';
 
 // Devicon Plain
