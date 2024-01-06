@@ -9,5 +9,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["Astro", "Nuxt", "qwik"]
+  "cSpell.words": ["Astro", "Nuxt", "qwik", "testid"]
 }

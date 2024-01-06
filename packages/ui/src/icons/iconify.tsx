@@ -1,14 +1,15 @@
 import { IconBaseProps } from 'react-icons';
 
 // Devicon Plain
-export function QwikIcon({ size = '24', ...props }: IconBaseProps) {
+export function QwikIcon({ size = '24', color = 'currentColor', ...props }: IconBaseProps) {
   return (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
       width={size}
       height={size}
       viewBox='0 0 128 128'
+      style={{ color: color }}
       {...props}
+      data-testid='qwik-icon'
     >
       <path
         fill='currentColor'
@@ -21,14 +22,20 @@ export function QwikIcon({ size = '24', ...props }: IconBaseProps) {
 type LoadingIconProps = IconBaseProps & { duration?: string };
 
 // Material Line Icons
-export function LoadingIcon({ size = '24', duration = '1.5s', ...props }: LoadingIconProps) {
+export function LoadingIcon({
+  size = '24',
+  duration = '1.5s',
+  color = 'currentColor',
+  ...props
+}: LoadingIconProps) {
   return (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
       width={size}
       height={size}
       viewBox='0 0 24 24'
+      style={{ color: color }}
       {...props}
+      data-testid='loading-icon'
     >
       <g fill='none' stroke='currentColor' strokeLinecap='round' strokeWidth='2'>
         <path
