@@ -4,7 +4,7 @@ import { cn } from '@/libs';
 import NextUIButton from '@repo/ui/NextUIButton';
 import { Card, CardBody, CardHeader } from '@repo/ui/NextUICard';
 import { DivideIcon, EqualIcon, MinusIcon, PlusIcon, TimesIcon } from '@repo/ui/ReactIcons';
-import { KEY, KEYS, Key, isNumber, toKey, transformToKeys } from '@repo/utils';
+import { KEY, KEYS, Key, isNumber, isOperator, toKey, createUrl, parseUrl } from '@repo/utils';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 
@@ -18,7 +18,7 @@ export default function CalculatorCard() {
   useEffect(() => {
     const f = searchParams.get('f');
     if (f) {
-      const hist = transformToKeys(f);
+      const hist = parseUrl(f);
       if (
         hist
           .at(-1)
@@ -35,173 +35,86 @@ export default function CalculatorCard() {
     }
   }, []);
 
+  const updateUrl = (keys: Key[]) => {
+    router.replace(createUrl(keys), { scroll: false });
+  };
+
   const handlePush = (key: Key) => {
     // if push clear
-    if (key.value === KEYS[KEY.CLEAR]?.value) {
+    if (key.escapedValue === KEYS[KEY.CLEAR]?.escapedValue) {
       setFormula([KEYS[KEY.ZERO]!]);
-      router.replace(
-        `${pathname}?f=${history
-          .flat()
-          .map((f) => f.escapedValue)
-          .join('')}`,
-        { scroll: false }
-      );
+      updateUrl(history.flat());
     }
     // if push =
-    else if (key.escapedValue === 'e') {
+    else if (key.escapedValue === KEYS[KEY.EQUAL]?.escapedValue) {
       // if previous key is + - * /
-      if (
-        [
-          KEYS[KEY.ADD]?.escapedValue,
-          KEYS[KEY.SUBTRACT]?.escapedValue,
-          KEYS[KEY.MULTIPLY]?.escapedValue,
-          KEYS[KEY.DIVIDE]?.escapedValue,
-        ].includes(formula.at(-1)?.escapedValue)
-      )
-        return;
+      if (isOperator(formula.at(-1))) return;
       let result = eval(formula.map((f) => f.value).join(''));
       result = toKey(result.toString());
-      setFormula([result]);
+      if (result.escapedValue === 'Infinity') setFormula([KEYS[KEY.ZERO]!]);
+      else setFormula([result]);
       setHistory((p) => [...p, [...formula, key, result]]);
-      router.replace(
-        `${pathname}?f=${[
-          ...history.flat().map((f) => f.escapedValue),
-          ...formula.map((f) => f.escapedValue),
-          key.escapedValue,
-          result.escapedValue,
-        ].join('')}`,
-        { scroll: false }
-      );
+      updateUrl([...history.flat(), ...formula, key, result]);
     }
     // if push + - * /
-    else if (
-      [
-        KEYS[KEY.ADD]?.escapedValue,
-        KEYS[KEY.SUBTRACT]?.escapedValue,
-        KEYS[KEY.MULTIPLY]?.escapedValue,
-        KEYS[KEY.DIVIDE]?.escapedValue,
-      ].includes(key.escapedValue)
-    ) {
-      // if formula is empty
-      if (formula.length === 0) return;
+    else if (isOperator(key)) {
       // if previous key is + - * /
-      else if (
-        [
-          KEYS[KEY.ADD]?.escapedValue,
-          KEYS[KEY.SUBTRACT]?.escapedValue,
-          KEYS[KEY.MULTIPLY]?.escapedValue,
-          KEYS[KEY.DIVIDE]?.escapedValue,
-        ].includes(formula.at(-1)?.escapedValue)
-      ) {
+      if (isOperator(formula.at(-1))) {
         setFormula((p) => [...p.slice(0, -1), key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.slice(0, -1).map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula.slice(0, -1), key]);
       }
       // if previous key is .
       else if (formula.at(-1)?.escapedValue === '.') {
         setFormula((p) => [...p, KEYS[KEY.ZERO]!, key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.map((f) => f.escapedValue),
-            '0',
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula, KEYS[KEY.ZERO]!, key]);
       } else {
         setFormula((p) => [...p, key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula, key]);
       }
     }
     // if push .
     else if (key.escapedValue === '.') {
       // if previous key is + - * /
-      if (
-        [
-          KEYS[KEY.ADD]?.escapedValue,
-          KEYS[KEY.SUBTRACT]?.escapedValue,
-          KEYS[KEY.MULTIPLY]?.escapedValue,
-          KEYS[KEY.DIVIDE]?.escapedValue,
-        ].includes(formula.at(-1)?.escapedValue)
-      ) {
+      if (isOperator(formula.at(-1))) {
         setFormula((p) => [...p, KEYS[KEY.ZERO]!, key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.map((f) => f.escapedValue),
-            '0',
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula, KEYS[KEY.ZERO]!, key]);
       }
       // if previous key is .
       else if (formula.at(-1)?.escapedValue === '.') {
         return;
       }
       // if previous key is number
-      else if (isNumber(formula.at(-1)?.label)) {
+      else if (isNumber(formula.at(-1))) {
         setFormula((p) => [...p, key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula, key]);
       }
     }
     // if push 0
     else if (key.escapedValue === '0') {
-      // if previous key is number
-      if (isNumber(formula.at(-1)?.label)) {
+      // if previous key is 0 and it is first key
+      if (formula.at(-1)?.escapedValue === '0' && formula.length === 1) return;
+      setFormula((p) => [...p, key]);
+      updateUrl([...history.flat(), ...formula, key]);
+    }
+    // if push number
+    else {
+      // if previous key is 0 and it is first key
+      if (formula.at(-1)?.escapedValue === '0' && formula.length === 1) {
         setFormula((p) => [...p.slice(0, -1), key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.slice(0, -1).map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula.slice(0, -1), key]);
       }
-    } else {
-      // if previous key is 0
-      if (formula.at(-1)?.escapedValue === '0') {
-        setFormula((p) => [...p.slice(0, -1), key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.slice(0, -1).map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+      // if previous key is number
+      else if (isNumber(formula.at(-1))) {
+        const last = formula.at(-1)!;
+        setFormula((p) => [...p.slice(0, -1), toKey(String(last.value) + String(key.value))]);
+        updateUrl([
+          ...history.flat(),
+          ...formula.slice(0, -1),
+          toKey(String(last.value) + String(key.value)),
+        ]);
       } else {
         setFormula((p) => [...p, key]);
-        router.replace(
-          `${pathname}?f=${[
-            ...history.flat().map((f) => f.escapedValue),
-            ...formula.map((f) => f.escapedValue),
-            key.escapedValue,
-          ].join('')}`,
-          { scroll: false }
-        );
+        updateUrl([...history.flat(), ...formula, key]);
       }
     }
   };
@@ -213,28 +126,27 @@ export default function CalculatorCard() {
           <div className='h-10 w-full border-2 rounded flex justify-end items-center tracking-wider p-1 dark:border-stone-600 text-xl'>
             {formula.map((f, i) => (
               <Fragment key={i}>
-                {(isNumber(f.label) || f.label === '.') && (
+                {(isNumber(f) || f.label === '.') && (
                   <span className='w-3 min-w-max' key={i}>
                     {f.label}
                   </span>
                 )}
-                {!isNumber(f.label) && f === KEYS[KEY.ADD] && <PlusIcon />}
-                {!isNumber(f.label) && f === KEYS[KEY.SUBTRACT] && <MinusIcon />}
-                {!isNumber(f.label) && f === KEYS[KEY.MULTIPLY] && <TimesIcon />}
-                {!isNumber(f.label) && f === KEYS[KEY.DIVIDE] && <DivideIcon />}
-                {!isNumber(f.label) && f === KEYS[KEY.EQUAL] && <EqualIcon />}
+                {!isNumber(f) && f === KEYS[KEY.ADD] && <PlusIcon />}
+                {!isNumber(f) && f === KEYS[KEY.SUBTRACT] && <MinusIcon />}
+                {!isNumber(f) && f === KEYS[KEY.MULTIPLY] && <TimesIcon />}
+                {!isNumber(f) && f === KEYS[KEY.DIVIDE] && <DivideIcon />}
+                {!isNumber(f) && f === KEYS[KEY.EQUAL] && <EqualIcon />}
               </Fragment>
             ))}
           </div>
         </CardHeader>
-        <CardBody className='grid grid-cols-4 gap-2'>
+        <CardBody className='grid grid-cols-4 grid-row-5 gap-2'>
           {KEYS.map((k) => (
             <NextUIButton
               className={cn(
-                'text-2xl h-full sm:w-16 md:w-[4.5rem] lg:w-20 xl:w-20 min-h-12 rounded min-w-0 !bg-neutral-700',
+                'text-2xl h-full rounded !bg-neutral-700 min-w-0',
                 k.row === 2 && 'row-span-2',
-                k.col === 2 &&
-                  'col-span-2 sm:w-[8.5rem] md:w-[9.5rem] lg:w-[10.5rem] xl:w-[10.5rem]'
+                k.col === 2 && 'col-span-2'
               )}
               key={k.value}
               onClick={() => handlePush(k)}
@@ -251,14 +163,14 @@ export default function CalculatorCard() {
               <div className='flex flex-wrap justify-end items-center space-x-2 text-xl'>
                 {h.map((v, j) => (
                   <Fragment key={j}>
-                    {(isNumber(v.label) || v.label === '.') && (
+                    {(isNumber(v) || v.label === '.') && (
                       <span className='w-3 min-w-max'>{v.label}</span>
                     )}
-                    {!isNumber(v.label) && v === KEYS[KEY.ADD] && <PlusIcon />}
-                    {!isNumber(v.label) && v === KEYS[KEY.SUBTRACT] && <MinusIcon />}
-                    {!isNumber(v.label) && v === KEYS[KEY.MULTIPLY] && <TimesIcon />}
-                    {!isNumber(v.label) && v === KEYS[KEY.DIVIDE] && <DivideIcon />}
-                    {!isNumber(v.label) && v === KEYS[KEY.EQUAL] && <EqualIcon />}
+                    {!isNumber(v) && v === KEYS[KEY.ADD] && <PlusIcon />}
+                    {!isNumber(v) && v === KEYS[KEY.SUBTRACT] && <MinusIcon />}
+                    {!isNumber(v) && v === KEYS[KEY.MULTIPLY] && <TimesIcon />}
+                    {!isNumber(v) && v === KEYS[KEY.DIVIDE] && <DivideIcon />}
+                    {!isNumber(v) && v === KEYS[KEY.EQUAL] && <EqualIcon />}
                   </Fragment>
                 ))}
               </div>

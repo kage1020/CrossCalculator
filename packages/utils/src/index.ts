@@ -119,11 +119,10 @@ export const KEYS: Key[] = [
   { label: '.', value: '.', escapedValue: '.', row: 1, col: 1 },
 ];
 
-export const isNumber = (key: string | undefined) => !isNaN(Number(key));
+export const isNumber = (key: Key | undefined) => key && !isNaN(Number(key.escapedValue));
 
-export function escapeKeys(keys: Key[]) {
-  return keys.map(({ escapedValue }) => escapedValue).join('');
-}
+export const isOperator = (key: Key | undefined) =>
+  key && [KEYS[KEY.ADD], KEYS[KEY.SUBTRACT], KEYS[KEY.MULTIPLY], KEYS[KEY.DIVIDE]].includes(key);
 
 export function toKey(str: string) {
   switch (str) {
@@ -139,13 +138,19 @@ export function toKey(str: string) {
       return KEYS[KEY.ADD]!;
     case 'e':
       return KEYS[KEY.EQUAL]!;
+    case '.':
+      return KEYS[KEY.DECIMAL]!;
     default:
       return { label: str, value: Number(str), escapedValue: str, row: 0, col: 0 };
   }
 }
 
-export function transformToKeys(str: string) {
-  const split: string[] = str.match(/[0-9]+|[a-z]|./g) || [];
+export function createUrl(keys: Key[], pathname: string = '/') {
+  return `${pathname}?f=${keys.map(({ escapedValue }) => escapedValue).join('')}`;
+}
+
+export function parseUrl(f: string) {
+  const split: string[] = f.match(/Infinity|[0-9]+|[a-z]|./g) || [];
   const results: Key[][] = [];
   let temp: Key[] = [];
   for (let i = 0; i < split.length; i++) {

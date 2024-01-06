@@ -19,7 +19,7 @@ export default function Icon({
 
   useEffect(() => setMounted(true), []);
 
-  if (mounted) return <LoadingIcon duration='1s' className={className} />;
+  if (!mounted) return <LoadingIcon duration='1s' className={className} />;
 
   return icon({ className, color, size });
 }
