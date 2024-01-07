@@ -18,12 +18,7 @@ export default function CalculatorCard() {
     const f = searchParams.get('f');
     if (f) {
       const hist = parseUrl(f);
-      if (
-        hist
-          .at(-1)
-          ?.map((h) => h.escapedValue)
-          .includes('e')
-      ) {
+      if (f.includes(KEYS[KEY.EQUAL]!.escapedValue)) {
         setHistory(hist);
       } else {
         setHistory(hist.slice(0, -1));
@@ -120,7 +115,7 @@ export default function CalculatorCard() {
 
   return (
     <>
-      <Card>
+      <Card data-testid='calc-main'>
         <CardHeader>
           <div className='h-10 w-full border-2 rounded flex justify-end items-center tracking-wider p-1 dark:border-stone-600 text-xl'>
             {formula.map((f, i) => (
@@ -155,7 +150,7 @@ export default function CalculatorCard() {
           ))}
         </CardBody>
       </Card>
-      <Card className='w-full min-h-[400px]'>
+      <Card className='w-full min-h-[400px]' data-testid='calc-history'>
         <CardBody className='gap-y-2'>
           {history.map((h, i) => (
             <Fragment key={i}>

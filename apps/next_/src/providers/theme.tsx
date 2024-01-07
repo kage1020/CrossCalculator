@@ -1,3 +1,4 @@
+/* v8 ignore start */
 'use client';
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';

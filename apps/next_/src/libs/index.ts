@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import {

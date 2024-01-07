@@ -12,7 +12,7 @@ export default function FrameworkSelect() {
   const searchParams = useSearchParams();
 
   return (
-    <div className='flex gap-2 flex-wrap justify-center'>
+    <div className='flex gap-2 flex-wrap justify-center' data-testid='frame-select'>
       {frameworks
         .filter((f) => f.value !== 'next')
         .map((f) => (

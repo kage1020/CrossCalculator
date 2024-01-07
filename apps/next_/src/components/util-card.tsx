@@ -13,7 +13,7 @@ export default function UtilCard() {
   const { theme } = useTheme();
 
   return (
-    <Card className='max-w-[400px]'>
+    <Card className='max-w-[400px]' data-testid='util-card'>
       <CardHeader className='justify-center'>
         <Icon
           icon={NextIcon}

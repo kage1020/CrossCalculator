@@ -31,8 +31,12 @@ export default function ThemeSwitcher() {
   if (!mounted) return <NextUIButton isLoading isIconOnly variant='light' />;
 
   return (
-    <NextUIButton isIconOnly variant='light' onClick={onClick}>
-      {theme === 'dark' ? <MoonIcon size={20} /> : <SunIcon size={20} />}
+    <NextUIButton isIconOnly variant='light' onClick={onClick} data-testid='theme-switcher'>
+      {theme === 'dark' ? (
+        <MoonIcon size={20} data-testid='dark' />
+      ) : (
+        <SunIcon size={20} data-testid='light' />
+      )}
     </NextUIButton>
   );
 }

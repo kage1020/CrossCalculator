@@ -1,7 +1,9 @@
+/* v8 ignore start */
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import ThemeProvider from '@/providers/theme';
+import { GoogleTagManager } from '@next/third-parties/google';
 import NextUIProvider from '@repo/ui/NextUIProvider';
+import ThemeProvider from '@/providers/theme';
 import { cn } from '@/libs';
 import '@repo/ui/style.css';
 import './globals.css';
@@ -17,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='ja' suppressHydrationWarning>
       <body>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID ?? ''} />
         <ThemeProvider>
           <NextUIProvider className='h-full'>
             <div
