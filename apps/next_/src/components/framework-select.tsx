@@ -22,6 +22,7 @@ export default function FrameworkSelect() {
             variant='bordered'
             key={f.value}
             className='w-28 grid grid-cols-3 !bg-stone-100 dark:!bg-stone-700 hover:!bg-stone-200 dark:hover:!bg-stone-600'
+            data-testid={`${f.value}-button`}
           >
             <Icon
               icon={f.icon}

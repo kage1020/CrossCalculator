@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       '@': '/src',
     },
+    exclude: ['node_modules', 'src/e2e'],
     coverage: {
       exclude: [
         'tailwind.config.ts',
@@ -16,6 +17,8 @@ export default defineConfig({
         'next-env.d.ts',
         'next.config.js',
         'postcss.config.js',
+        'playwright.config.ts',
+        'src/e2e/*',
       ],
     },
   },
