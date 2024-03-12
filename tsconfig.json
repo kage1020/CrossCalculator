@@ -1,4 +1,7 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "include": ["apps/**/*", "packages/**/*"]
+  "include": ["apps/**/*", "packages/**/*"],
+  "compilerOptions": {
+    "outDir": ".turbo"
+  }
 }
