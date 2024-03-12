@@ -1,4 +1,4 @@
-// TODO: Remove this file once the following issue is resolved
+// TODO: #1 Remove this file once the following issue is resolved
 // Could not find a declaration file for module 'tailwind-variants'.
 // '/node_modules/.pnpm/tailwind-variants@0.2.0_tailwindcss@3.4.1/node_modules/tailwind-variants/dist/index.cjs' implicitly has an 'any' type. Try npm i --save-dev @types/tailwind-variants if it exists or add a new declaration (.d.ts) file containing declare module 'tailwind-variants';
 
