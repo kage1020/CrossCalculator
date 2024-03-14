@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./NextUI": "./src/NextUI/index.ts"
+    "./NextUI": "./src/NextUI/index.ts",
+    "./NextUI/default.css": "./dist/NextUI/default.css"
   },
   "scripts": {
+    "build": "tailwindcss -i ./src/NextUI/default.css -o ./dist/NextUI/default.css --config ./src/NextUI/tailwind.config.ts",
     "test": "vitest run",
     "lint": "eslint . --ext .ts,.tsx"
   },
@@ -14,6 +16,7 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "eslint": "^8.57.0",
+    "tailwindcss": "^3.4.1",
     "vitest": "^1.3.1"
   },
   "dependencies": {
