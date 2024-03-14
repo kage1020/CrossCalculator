@@ -1,7 +1,7 @@
 import { IconBaseProps } from "react-icons"
 
 // Devicon Plain
-export function QwikIcon({
+export function Qwik({
   size = "24",
   color = "currentColor",
   ...props
@@ -25,7 +25,7 @@ export function QwikIcon({
 type LoadingIconProps = IconBaseProps & { duration?: string }
 
 // Material Line Icons
-export function LoadingIcon({
+export function Loading({
   size = "24",
   duration = "1.5s",
   color = "currentColor",
