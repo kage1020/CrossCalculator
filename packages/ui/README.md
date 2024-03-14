@@ -5,17 +5,12 @@
 You need to add the following code to your `tailwind.config.ts` file to use NextUI.
 
 ```ts
-import { nextui } from '@nextui-org/react';
+import { NextUIConfig } from '@repo/ui/NextUI';
 
 const config = {
-    content: [
+    presets: [
         // ...
-        NEXTUI_CONTENT,
-    ],
-    darkMode: 'class',
-    plugins: [
-        // ...
-        nextui(),
+        NextUIConfig,
     ],
 }
 ```
@@ -54,6 +49,22 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
         </ThemeProvider>
+    );
+}
+```
+
+And, import Tailwind classes for NextUI components in root layout.
+
+```tsx
+import "@repo/ui/NextUI/default.css";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <html>
+            <body>
+                {children}
+            </body>
+        </html>
     );
 }
 ```
