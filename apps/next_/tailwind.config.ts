@@ -1,16 +1,16 @@
 import sharedConfig from "@repo/tailwind-config"
+import { NextUIConfig } from "@repo/ui/NextUI"
 import type { Config } from "tailwindcss"
 
 const config: Config = {
-  presets: [sharedConfig],
+  presets: [sharedConfig, NextUIConfig],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
 }
+
 export default config

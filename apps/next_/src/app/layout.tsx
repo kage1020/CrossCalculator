@@ -1,4 +1,8 @@
+import Providers from "@/providers"
+import { ChildrenProps } from "@/types"
 import { GoogleTagManager } from "@next/third-parties/google"
+import "@repo/ui/NextUI/default.css"
+import { cn } from "@repo/utils"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -10,20 +14,21 @@ export const metadata: Metadata = {
   description: "Cross Calculator with Next.js",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="ja">
-      <body className={inter.className}>
+    <html lang="ja" suppressHydrationWarning className="h-full">
+      <body
+        className={cn(
+          inter.className,
+          "bg-stone-50 dark:bg-stone-900 transition duration-300 min-h-screen",
+        )}
+      >
         {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID && (
           <GoogleTagManager
             gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
           />
         )}
-        {children}
+        <Providers className="h-full">{children}</Providers>
       </body>
     </html>
   )
