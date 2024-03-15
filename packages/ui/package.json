@@ -5,7 +5,7 @@
   "exports": {
     "./NextUI": "./src/NextUI/index.ts",
     "./NextUI/default.css": "./dist/NextUI/default.css",
-    "./icons": "./src/icons/index.ts"
+    "./icons/react": "./src/icons/react/index.ts"
   },
   "scripts": {
     "build": "tailwindcss -i ./src/NextUI/default.css -o ./dist/NextUI/default.css --config ./src/NextUI/tailwind.config.ts",
@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
