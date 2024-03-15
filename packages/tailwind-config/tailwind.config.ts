@@ -1,8 +1,7 @@
-import { FRAMEWORKS } from "@repo/utils"
+import { FRAMEWORKS } from "@repo/data"
 import type { Config } from "tailwindcss"
 
 const config: Omit<Config, "content"> = {
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
