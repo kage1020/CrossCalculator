@@ -40,3 +40,6 @@ export * from "@nextui-org/tooltip"
 export * from "@nextui-org/user"
 
 export { default as NextUIConfig } from "./tailwind.config"
+
+export const NEXT_UI_CONTENT =
+  "../../node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"

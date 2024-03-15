@@ -13,7 +13,7 @@ import {
   SiVuedotjs,
   SiX,
 } from "react-icons/si"
-export type { IconType } from "react-icons"
+export type { IconBaseProps, IconType } from "react-icons"
 
 export {
   SiAstro as Astro,
