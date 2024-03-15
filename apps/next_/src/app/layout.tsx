@@ -16,19 +16,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="ja" suppressHydrationWarning className="h-full">
-      <body
-        className={cn(
-          inter.className,
-          "bg-stone-50 dark:bg-stone-900 transition duration-300 min-h-screen",
-        )}
-      >
+    <html lang="ja" suppressHydrationWarning>
+      <body>
         {process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID && (
           <GoogleTagManager
             gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
           />
         )}
-        <Providers className="h-full">{children}</Providers>
+        <Providers
+          className={cn(
+            inter.className,
+            "bg-stone-50 dark:bg-stone-900 transition duration-300 p-2",
+          )}
+        >
+          {children}
+        </Providers>
       </body>
     </html>
   )

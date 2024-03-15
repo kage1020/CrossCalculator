@@ -10,5 +10,5 @@
   ],
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "tailwindCSS.experimental.classRegex": ["[\"'`]([^\"'`]*).*?[\"'`]"],
-  "cSpell.words": ["testid"]
+  "cSpell.words": ["nuxt", "qwik", "testid"]
 }

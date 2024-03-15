@@ -1,5 +1,7 @@
 "use client"
 
+import { Button } from "@repo/ui/NextUI"
+import { Moon, Sun } from "@repo/ui/icons/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
@@ -12,11 +14,12 @@ export default function ThemeSwitcher() {
   if (!mounted) return null
 
   return (
-    <button
+    <Button
+      variant="light"
+      isIconOnly
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="fixed top-4 right-4 p-2 bg-white dark:bg-black rounded-full"
     >
-      {theme === "dark" ? "🌞" : "🌜"}
-    </button>
+      {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+    </Button>
   )
 }
