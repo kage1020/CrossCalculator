@@ -46,6 +46,14 @@ export default function Calculator() {
     })
   }
 
+  const replaceKeysFromUrl = (key: Key[]) => {
+    const f = searchParams.get("f")
+    const escapedValues = key.map(({ escapedValue }) => escapedValue).join("")
+    router.replace(`${pathname}?f=${f?.slice(0, -1) ?? ""}${escapedValues}`, {
+      scroll: false,
+    })
+  }
+
   const setHistory = (key: Key) => {
     // if clear key is pressed, clear the formula
     if (key === KEY.CLEAR) {
@@ -74,7 +82,7 @@ export default function Calculator() {
         return
       }
       setFormula([...formula, key])
-      addKeysToUrl([key])
+      replaceKeysFromUrl([key])
     }
     // if decimal key is pressed, add the decimal to the formula
     else if (key === KEY.DECIMAL) {
@@ -101,7 +109,7 @@ export default function Calculator() {
       // if the first and last key is 0, replace the last key with the new number
       if (formula.at(0) === KEY.ZERO && formula.at(-1) === KEY.ZERO) {
         setFormula([...formula.slice(0, -1), key])
-        addKeysToUrl([key])
+        replaceKeysFromUrl([key])
         return
       }
       // if the last key is a number, append the new number to the last key
