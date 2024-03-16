@@ -135,9 +135,6 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@repo/utils':
-        specifier: workspace:*
-        version: link:../utils
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.1
