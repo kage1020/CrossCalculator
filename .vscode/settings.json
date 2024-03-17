@@ -10,5 +10,8 @@
   ],
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "tailwindCSS.experimental.classRegex": ["[\"'`]([^\"'`]*).*?[\"'`]"],
-  "cSpell.words": ["nuxt", "qwik", "testid", "iconify", "Nuxt", "shadcn"]
+  "cSpell.words": ["nuxt", "qwik", "testid", "iconify", "Nuxt", "shadcn"],
+  "emmet.preferences": {
+    "output.selfClosingStyle": "xhtml"
+  }
 }
