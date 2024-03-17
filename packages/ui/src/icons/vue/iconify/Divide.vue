@@ -1,0 +1,18 @@
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+    size?: string | number
+    color?: string
+}>(), {
+    size: '1em',
+    color: 'currentColor'
+})
+</script>
+<template>
+	<svg xmlns="http://www.w3.org/2000/svg" :width="size" :height="size" :color="color" viewBox="0 0 24 24">
+		<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+			<circle cx="12" cy="6" r="1" />
+			<path d="M5 12h14" />
+			<circle cx="12" cy="18" r="1" />
+		</g>
+	</svg>
+</template>
