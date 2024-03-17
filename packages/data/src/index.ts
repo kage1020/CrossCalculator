@@ -21,7 +21,7 @@ export const FRAMEWORKS = {
   Next: {
     label: "Next.js",
     value: "next",
-    href: "/next",
+    href: "/",
     color: { light: "#000000", dark: "#FFFFFF" },
   },
   Nuxt: {
