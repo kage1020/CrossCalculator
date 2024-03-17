@@ -9,5 +9,6 @@
     }
   ],
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "tailwindCSS.experimental.classRegex": ["[\"'`]([^\"'`]*).*?[\"'`]"]
+  "tailwindCSS.experimental.classRegex": ["[\"'`]([^\"'`]*).*?[\"'`]"],
+  "cSpell.words": ["iconify", "Nuxt"]
 }
