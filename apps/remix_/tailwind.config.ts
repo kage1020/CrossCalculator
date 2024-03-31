@@ -1,9 +1,13 @@
+import sharedConfig from "@repo/tailwind-config"
 import type { Config } from "tailwindcss"
 
-export default {
+const config: Config = {
+  presets: [sharedConfig],
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
-} satisfies Config
+}
+
+export default config

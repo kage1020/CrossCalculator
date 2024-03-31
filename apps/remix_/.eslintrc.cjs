@@ -22,7 +22,7 @@ module.exports = {
   ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config
-  extends: ["eslint:recommended"],
+  extends: ["@repo/eslint-config/react-internal.js"],
 
   overrides: [
     // React
@@ -81,4 +81,4 @@ module.exports = {
       },
     },
   ],
-};
+}
