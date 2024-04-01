@@ -1,15 +1,7 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/.server/**/*.ts",
-    "**/.server/**/*.tsx",
-    "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
-  ],
+  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", "netlify-edge-plugin.ts"],
   "compilerOptions": {
-    "types": ["@remix-run/node", "vite/client"],
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -19,7 +11,6 @@
     "paths": {
       "~/*": ["./app/*"]
     },
-
     // Vite takes care of building everything, not tsc.
     "noEmit": true
   }

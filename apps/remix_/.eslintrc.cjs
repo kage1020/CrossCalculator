@@ -19,10 +19,9 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config
-  extends: ["@repo/eslint-config/react-internal.js"],
+  extends: ["eslint:recommended"],
 
   overrides: [
     // React
@@ -75,10 +74,10 @@ module.exports = {
 
     // Node
     {
-      files: [".eslintrc.cjs"],
+      files: [".eslintrc.js"],
       env: {
         node: true,
       },
     },
   ],
-}
+};
