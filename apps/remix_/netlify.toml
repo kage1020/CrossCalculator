@@ -1,9 +1,9 @@
 [build]
-command = "npm run build"
-publish = "build/client"
+command = "turbo run build --filter remix_"
+publish = "apps/remix_/build"
 
 [dev]
-command = "npm run dev"
+command = "pnpm dev --filter remix_"
 framework = "vite"
 
 # Set immutable caching for static files, because they have fingerprinted filenames
