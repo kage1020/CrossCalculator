@@ -26,6 +26,11 @@
       "dependsOn": [
         "^test"
       ]
+    },
+    "start": {
+      "dependsOn": [
+        "^start"
+      ]
     }
   }
 }

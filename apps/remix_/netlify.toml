@@ -1,6 +1,6 @@
 [build]
 command = "turbo run build --filter remix_"
-publish = "apps/remix_/build"
+publish = "apps/remix_/build/client"
 
 [dev]
 command = "pnpm dev --filter remix_"
