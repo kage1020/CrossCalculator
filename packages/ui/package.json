@@ -7,6 +7,7 @@
     "./NextUI/default.css": "./dist/NextUI/default.css",
     "./NuxtUI": "./src/NuxtUI/index.ts",
     "./shadcn": "./src/shadcn/index.ts",
+    "./chakra": "./src/chakra/index.ts",
     "./icons/react": "./src/icons/react/index.ts",
     "./icons/vue": "./src/icons/vue/index.ts"
   },
@@ -29,6 +30,9 @@
     "vue-tsc": "1"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@iconify-json/simple-icons": "^1.1.95",
     "@nextui-org/react": "^2.2.10",
     "@nuxt/ui": "^2.14.2",
