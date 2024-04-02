@@ -9,6 +9,7 @@
     "./shadcn": "./src/shadcn/index.ts",
     "./chakra": "./src/chakra/index.ts",
     "./mantine": "./src/mantine/index.ts",
+    "./AntDesign": "./src/AntDesign/index.ts",
     "./icons/react": "./src/icons/react/index.ts",
     "./icons/vue": "./src/icons/vue/index.ts"
   },
@@ -42,6 +43,7 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@repo/utils": "workspace:*",
+    "antd": "^5.16.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.12",
