@@ -10,6 +10,7 @@
     "./chakra": "./src/chakra/index.ts",
     "./mantine": "./src/mantine/index.ts",
     "./AntDesign": "./src/AntDesign/index.ts",
+    "./Vuetify": "./src/Vuetify/index.mts",
     "./icons/react": "./src/icons/react/index.ts",
     "./icons/vue": "./src/icons/vue/index.ts"
   },
@@ -50,6 +51,7 @@
     "lucide-react": "^0.358.0",
     "react-icons": "^5.0.1",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vuetify": "^3.5.13"
   }
 }
