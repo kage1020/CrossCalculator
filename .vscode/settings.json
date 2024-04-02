@@ -16,7 +16,9 @@
     "iconify",
     "mantine",
     "Nuxt",
+    "qwik",
     "shadcn",
-    "vuetify"
+    "vuetify",
+    "testid"
   ]
 }
